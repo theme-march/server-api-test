@@ -4,6 +4,7 @@ const { MongoClient } = require("mongodb");
 const ObjectId = require("mongodb").ObjectId;
 require("dotenv").config();
 const port = process.env.PORT || 5000;
+console.log(process.env.PORT);
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -13,7 +14,9 @@ const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
+app.get("/", async (req, res) => {
+  res.send("ok");
+});
 async function run() {
   try {
     await client.connect();
